@@ -1,45 +1,43 @@
-//  let img = document.querySelector("#test");
-pokemoninfo = document.querySelector("#test")
+pokemoninfo = document.querySelector("#card")
+
+
     async function myfunction() {
       let number = 0
+      
       for (let index = 1; index < 152; index++) {
-        number = number +1
+        number = number + 1
         let reponse = await fetch("https://pokeapi.co/api/v2/pokemon/"+ number );
         const pokemon = await reponse.json();
        
-        
-          
         let pokemondiv= document.createElement("div");
-       pokemondiv.classList.add('pokediv')
+        pokemondiv.classList.add('pokediv')
         let pokeName = document.createElement('p' )
+        pokeName.classList.add('pokemonName')
         pokeName.textContent = (pokemon.name)
         let img = document.createElement('img');
-       
-   
-   
-      
-     
-        
         img.setAttribute('src',pokemon['sprites']['other']['dream_world'].front_default);
       
         pokemoninfo.appendChild(pokemondiv)
         pokemondiv.appendChild(img)
         pokemondiv.appendChild(pokeName);
         
-       
-        
         pokemon.types.forEach(type => {
           
           const typeName = document.createElement('p');
           typeName.classList.add('type-name')
           typeName.textContent = type.type.name;
-          console.log(type.type);
+          // console.log(type.type);
           pokemondiv.appendChild(typeName);
 
 // POKEMON TYPE BACKGROUND COLOR////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-       
+        function pokemonBackgroundColor() {
+        
           if (pokemon.types[0].type.name === "grass" ) {
             pokemondiv.style.background= "#EFF9DA"
+          }
+
+          if (pokemon.types[0].type.name === "water" ) {
+            pokemondiv.style.background= "#CBE4F9"
           }
       
           if (pokemon.types[0].type.name === "ground" ) {
@@ -89,10 +87,19 @@ pokemoninfo = document.querySelector("#test")
           if (pokemon.types[0].type.name  === "ice"  ) {
             pokemondiv.style.backgroundColor = "#d0fefe"
           }
+
+          if (pokemon.types[0].type.name  === "dragon"  ) {
+            pokemondiv.style.backgroundColor = "#ccdfdc"
+          }
+          
+       
+        }
+        pokemonBackgroundColor()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // POKEMON TYPE COLOR////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        function pokemonTypeColor() {
+          
           if (type.type.name === "poison" ) {
             typeName.style.background = "#bf9cfc"
           }
@@ -114,27 +121,72 @@ pokemoninfo = document.querySelector("#test")
           }
           
           if (type.type.name === "water" ) {
-            typeName.style.background = "#dddddd"
+            typeName.style.background = "#d0fefe"
+          }
+
+          if (type.type.name === "bug" ) {
+            typeName.style.background = "#bdcaa8"
+          }
+
+          if (type.type.name === "normal" ) {
+            typeName.style.background = "#b5ced4"
+          }
+
+          if (type.type.name === "ground" ) {
+            typeName.style.background = "#C8A796"
+          }
+
+          if (type.type.name === "fairy" ) {
+            typeName.style.background = "#E0C1C1"
           }
     
+          if (type.type.name === "fighting" ) {
+            typeName.style.background = "#EEA988"
+          }
+
+          if (type.type.name === "psychic" ) {
+            typeName.style.background = "#C2A5CC"
+          }
+
+          if (type.type.name === "rock" ) {
+            typeName.style.background = "#d6e0e6"
+          }
+    
+          if (type.type.name === "ghost" ) {
+            typeName.style.background = "#b790d4"
+          }
+
+          if (type.type.name === "ice" ) {
+            typeName.style.background = "#ffffff"
+          }
+          if (type.type.name === "dragon" ) {
+            typeName.style.background = "#89cff0"
+          }
+    
+        }
+        pokemonTypeColor()   
         
-        });
-      
-       
-       
-        
+        });  
     }
  
       console.log(number)  
     }
 
-    function afficherpokemon(){
-      return myfunction()
+    function afficherpokemon(){ 
+        myfunction()
     }
 
-    (async() => {
-      await afficherpokemon() 
-    })();
+  //  (async() => {
+
+    
+  //     await afficherpokemon() 
+ 
+
+      
+
+    
+
+  //   })();
       
  
    
